@@ -9,6 +9,7 @@ class CreateTables < ActiveRecord::Migration
 
     create_table :wallprayers do |t|
       t.string :prayer
+      t.boolean :anonymous
       t.integer :user_id
     end
 

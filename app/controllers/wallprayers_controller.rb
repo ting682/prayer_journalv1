@@ -1,0 +1,4 @@
+class WallprayersController < ApplicationController
+
+    
+end
