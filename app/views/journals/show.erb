@@ -1,0 +1,17 @@
+<% if Helper.is_logged_in?(session) %>
+
+    <div class="wrapper">
+        <% @user.journals.each do |journal| %>
+            <div class="journal edit"><a href="/journals/<%= journal.id %>/edit"><%= journal.date %></a></div>
+            
+            <div class="journal delete">
+                <form method="post" action="/journals/<%= journal.id %>">
+                    <input id="hidden" type="hidden" name="_method" value="DELETE">
+                    <input type="submit" value="Delete Journal Entry">
+                </form>
+            </div>
+        <% end %>
+    </div>
+<% else %>
+      <h1> You Must Be Logged in to Make Tweets </h1>
+<% end %>

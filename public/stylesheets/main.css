@@ -22,7 +22,7 @@
   }
 
   .wrapper {
-    background: #fff;
+    background: rgb(255, 255, 255);
     -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
     -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
     box-shadow: 0 0 10px rgba(0,0,0,.3);
@@ -58,7 +58,7 @@
   }
 
   .content {
-    float: left;
+    clear: both;
     width: 60%; /* 480px / 800px */
   }
 
@@ -126,9 +126,75 @@
 
   }
 
+  .textfield {
+    height: 70px;
+  }
+
+  .hamburger {
+    display: none;
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 6px 0;
+  }
+
+  .container {
+    float: left;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  #ourmanna-verse {
+    float: left;
+    padding: 10px;
+    margin:10px;
+    background: rgba(218, 105, 105, 0.3);
+    border-color: rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  }
+  
+  .topnav {
+    float: left;
+    overflow: hidden;
+    background-color: #333;
+  
+  }
+
+  .topnav a {
+    float: left;
+    color: #ca4949;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    
+  }
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
 }
 
 @media screen and (max-width: 600px) {
+
+  .hamburger {
+    
+    display: inline;
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 6px 0;
+  }
+
+
   .wrapper {
     -moz-box-shadow: none;
     -webkit-box-shadow: none;

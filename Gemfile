@@ -12,7 +12,8 @@ gem 'pry'
 gem 'bcrypt'
 gem 'tux'
 gem 'truemail'
-
+gem 'dotenv'
+gem 'httparty'
 
 group :test do
   gem 'rspec'

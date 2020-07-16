@@ -3,9 +3,9 @@ class User < ActiveRecord::Base
     has_many :journals
     has_many :wallprayers
 
-    validates :username, presence: => true
-    validates :password, presence: => true
-    validates :email, presence: => true
+    validates :username, :presence => true
+    validates :email, :presence => true
+    validates :password, :presence => true
 
     def slug  
         self.username.split(" ").map do |word|
