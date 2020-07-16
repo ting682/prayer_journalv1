@@ -1,0 +1,21 @@
+<div class="div-table">
+    <div class="div-table-row1">
+        <div class="div-table-col1">Prayer</div>
+        <div class="div-table-col2">User</div>
+    </div>
+
+    <% @prayerwall.each do |wallprayer| %>
+        <div class="div-table-row">
+            <div class="div-table-col1"><%= wallprayer.prayer %></div>
+            <div class="div-table-col2">
+                <% if wallprayer.anonymous %>
+                    Anonymous
+                <% else %>
+                    <%= User.find(wallprayer.user_id).username %>
+                <% end %>
+            </div>
+
+        </div>
+    <% end %>
+
+</div>

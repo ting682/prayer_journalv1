@@ -54,7 +54,7 @@ class UsersController < ApplicationController
         if user && user.authenticate(params[:password])
           session[:user_id] = user.id
           
-          redirect "/journals"
+          redirect "/journals/#{user.slug}"
         else
             
           redirect "/login"
