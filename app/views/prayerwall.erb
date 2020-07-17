@@ -1,13 +1,17 @@
-<div class="div-table">
-    <div class="div-table-row1">
-        <div class="div-table-col1">Prayer</div>
-        <div class="div-table-col2">User</div>
+
+
+<div class="content">
+<a href="/prayerwall/new" class="button button1">Create new prayer</a>
+<div class="div-table2">
+    <div class="div-table2-row1">
+        <div class="div-table2-col1">Prayer</div>
+        <div class="div-table2-col2">User</div>
     </div>
 
     <% @prayerwall.each do |wallprayer| %>
-        <div class="div-table-row">
-            <div class="div-table-col1"><%= wallprayer.prayer %></div>
-            <div class="div-table-col2">
+        <div class="div-table2-row">
+            <div class="div-table2-col1"><%= wallprayer.prayer %></div>
+            <div class="div-table2-col2">
                 <% if wallprayer.anonymous %>
                     Anonymous
                 <% else %>
@@ -18,4 +22,5 @@
         </div>
     <% end %>
 
+</div>
 </div>

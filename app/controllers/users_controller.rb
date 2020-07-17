@@ -23,7 +23,7 @@ class UsersController < ApplicationController
         if user.save
             session[:user_id] = user.id
 
-            redirect to "/journals/#{user.slug}"
+            redirect to "/journals"
 
         else
             redirect to '/signup'
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
         if Helper.is_logged_in?(session)
             #binding.pry
             @user = User.find(session[:user_id])
-            redirect to "/journals/#{@user.slug}"
+            redirect to "/journals"
         else
             erb :'users/login'
         end     
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
         #binding.pry
         if Helper.is_logged_in?(session)
             @user = User.find(session[:user_id])
-            redirect "/journals/#{@user.slug}"
+            redirect "/journals"
         end
 
         user = User.find_by(:username => params[:username])
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
         if user && user.authenticate(params[:password])
           session[:user_id] = user.id
           
-          redirect "/journals/#{user.slug}"
+          redirect "/journals"
         else
             
           redirect "/login"

@@ -185,13 +185,13 @@
   .topnav {
     float: left;
     overflow: hidden;
-    background-color: #333;
-  
+    background-color: rgb(115, 73, 168);
+    border-radius: 10px;
   }
 
   .topnav a {
     float: left;
-    color: #ca4949;
+    color: #ffffff;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -212,19 +212,19 @@
   .div-table {
     clear: both;
     display: table;         
-    width: 600px;        
+    width: auto;        
     background-color: #79b7eb;         
     border: 1px solid white;         
     border-spacing: 5px; /* cellspacing:poor IE support for  this */
-    border-radius: 5px;
+    border-radius: 10px;
+    vertical-align: middle;
   }
 
   .div-table-row1 {
     display: table-row;
-    border-radius: 5px;
     background-color: #79b7eb;
     width: auto;
-    
+    vertical-align: middle;
   }
 
   .div-table-row {
@@ -232,25 +232,75 @@
     width: auto;
     clear: both;
     background-color: #abd1f0;
+    vertical-align: middle;
   }
 
   .div-table-col1 {
     float: left; /* fix for  buggy browsers */
-            
+    line-height: 2.7;        
     width: 200px;         
     margin: 10px;
+    vertical-align: middle;
+    
   }
   .div-table-col2 {
     float: left; /* fix for  buggy browsers */
-            
+    line-height: 1.6;  
     width: 70px;          
     margin: 10px; 
   }
+
+  .div-table-col21 {
+    float: left; /* fix for  buggy browsers */
+    line-height: 2.7;  
+    width: 70px;          
+    margin: 10px; 
+    
+  }
   .div-table-col3 {
     float: left; /* fix for  buggy browsers */
-            
+    line-height: 2.7;        
     width: 100px;         
     margin: 10px;
+  }
+
+  .div-table2 {
+    margin-top: 20px;
+    display: table;         
+    width: auto;        
+    background-color: #79b7eb;         
+    border: 1px solid white;         
+    border-spacing: 10px; /* cellspacing:poor IE support for  this */
+    border-radius: 5px;
+  }
+
+  .div-table2-row1 {
+    display: table-row;
+    border-radius: 5px;
+    background-color: #79b7eb;
+    width: auto;
+    
+  }
+
+  .div-table2-row {
+    display: table-row;
+    width: auto;
+    clear: both;
+    background-color: #c0def7;
+    border-radius: 5px;
+  }
+
+  .div-table2-col1 {
+    float: left; /* fix for  buggy browsers */
+    border-radius: 5px;
+    width: 400px;         
+    margin: 10px;
+  }
+  .div-table2-col2 {
+    float: left; /* fix for  buggy browsers */
+    border-radius: 5px;   
+    width: 100px;          
+    margin: 10px; 
   }
 
   textarea {
