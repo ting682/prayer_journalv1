@@ -267,7 +267,7 @@
   .div-table2 {
     margin-top: 20px;
     display: table;         
-    width: auto;        
+    width: 650px;        
     background-color: #79b7eb;         
     border: 1px solid white;         
     border-spacing: 10px; /* cellspacing:poor IE support for  this */
@@ -293,13 +293,28 @@
   .div-table2-col1 {
     float: left; /* fix for  buggy browsers */
     border-radius: 5px;
-    width: 400px;         
+    width: 300px;         
     margin: 10px;
   }
+
   .div-table2-col2 {
     float: left; /* fix for  buggy browsers */
     border-radius: 5px;   
     width: 100px;          
+    margin: 10px; 
+  }
+
+  .div-table2-col3 {
+    float: left; /* fix for  buggy browsers */
+    border-radius: 5px;   
+    width: 50px;          
+    margin: 10px; 
+  }
+
+  .div-table2-col4 {
+    float: left; /* fix for  buggy browsers */
+    border-radius: 5px;   
+    width: 70px;          
     margin: 10px; 
   }
 
@@ -313,6 +328,17 @@
     background-color: #f8f8f8;
     resize: none;
   }
+
+  .flash {
+    background: rgb(255, 255, 160);
+    color:#4aa741;
+    border-color:#c6d880;
+    width: 70%;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+  }
+  
 }
 
 @media screen and (max-width: 600px) {

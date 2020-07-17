@@ -1,6 +1,14 @@
 <% if Helper.is_logged_in?(session) %>
 
-        <div class="content"><a href="/journals/<%= @user.slug %>" class="button button1">Create new journal entry</a>
+
+    <div class="content">
+        
+        <div class="flash">    
+            <% if flash.has?(:message) %>
+                <%= flash[:message] %>
+            <% end %>
+        </div>
+        <a href="/journals/new" class="button button1">Create new journal entry</a>
         
         <div class="div-table">
             <div class="div-table-row1">
