@@ -10,16 +10,17 @@ class CreateTables < ActiveRecord::Migration
     create_table :wallprayers do |t|
       t.string :prayer
       t.boolean :anonymous
+      t.timestamps null: false
       t.integer :user_id
     end
 
-    create_table :journals do |t|
+    create_table :journalentries do |t|
       t.text :heart
       t.text :teachme
       t.text :prayer
       t.text :answer
       t.text :thankful
-      t.string :date
+      t.timestamps null: false
       t.integer :user_id
     end
   end

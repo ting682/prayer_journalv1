@@ -1,25 +1,25 @@
 require 'rack-flash'
 
-class JournalsController < ApplicationController
+class JournalentriesController < ApplicationController
 
     
 
-    get '/journals/new' do
+    get '/journalentries/new' do
         if Helper.is_logged_in?(session)
             @user = User.find(session[:user_id])
             
-            erb :'/journals/new'
+            erb :'/journalentries/new'
         else
             redirect to "/login"
         end
     end
 
-    get '/journals' do
+    get '/journalentries' do
         #binding.pry
         if Helper.is_logged_in?(session)
             @user = Helper.current_user(session)
             
-            erb :'/journals/show'
+            erb :'/journalentries/show'
 
         else
             redirect to "/login"
@@ -27,32 +27,31 @@ class JournalsController < ApplicationController
         
     end
 
-    post '/journals' do
-        @t = Time.now.httpdate.split(" ")
-        @date = @t[0] + " " + @t[1] + " " + @t[2] + " " + @t[3] + " " + Time.now.strftime("%I:%M %p")
+    post '/journalentries' do
+    
         
         @user = User.find(session[:user_id])
 
         
-        @journal = Journal.create(heart: params[:heart], teachme: params[:teachme], prayer: params[:prayer], answer: params[:answer], thankful: params[:thankful], date: @date)
+        @journalentry = Journalentry.create(heart: params[:heart], teachme: params[:teachme], prayer: params[:prayer], answer: params[:answer], thankful: params[:thankful])
         
-        @user.journals << @journal
+        @user.journalentries << @journalentry
 
         @user.save
 
         flash[:message] = "Journal entry created successfully."
 
-        redirect to "/journals"
+        redirect to "/journalentries"
 
     end
 
-    get '/journals/:id/edit' do
+    get '/journalentries/:id/edit' do
         
         if Helper.is_logged_in?(session)
             @user = Helper.current_user(session)
-            @journal = Journal.find(params[:id])
+            @journalentry = Journalentry.find(params[:id])
             
-            erb :'journals/edit'
+            erb :'journalentries/edit'
         else
 
             redirect to "/login"
@@ -60,32 +59,33 @@ class JournalsController < ApplicationController
 
     end
 
-    patch '/journals/:id' do
-        @journal = Journal.find(params[:id])
+    patch '/journalentries/:id' do
 
-        @t = Time.now.httpdate.split(" ")
-        @date = @t[0] + " " + @t[1] + " " + @t[2] + " " + @t[3] + " " + Time.now.strftime("%I:%M %p")
+        
+        @journalentry = Journalentry.find(params[:id])
 
-        @journal.update(heart: params[:heart], teachme: params[:teachme], prayer: params[:prayer], answer: params[:answer], thankful: params[:thankful], date: @date)
+        
+
+        @journalentry.update(heart: params[:heart], teachme: params[:teachme], prayer: params[:prayer], answer: params[:answer], thankful: params[:thankful])
         
 
         #flash message "Journal entry was successfully edited."
         flash[:message] = "Journal entry edited successfully."
 
         #binding.pry
-        redirect to "/journals"
+        redirect to "/journalentries"
     end
 
-    delete '/journals/:id' do
-        @journal = Journal.find(params[:id])
+    delete '/journalentries/:id' do
+        @journalentry = Journalentry.find(params[:id])
 
-        if @journal.user_id == session[:user_id]
-            @journal.delete
+        if @journalentry.user_id == session[:user_id]
+            @journalentry.delete
 
             #flash message "Journal entry was deleted successfully"
             flash[:message] = "Journal entry deleted successfully."
 
-            redirect to "/journals"
+            redirect to "/journalentries"
 
         else
             #flash message "You should be logged on to perform this action"

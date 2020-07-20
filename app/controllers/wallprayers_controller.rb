@@ -68,4 +68,18 @@ class WallprayersController < ApplicationController
         end
     end
 
+    delete '/prayerwall/:id' do
+        @prayer = Wallprayer.find(params[:id])
+        if @prayer.user_id == session[:user_id]
+
+            @prayer.delete
+            flash[:message] = "Prayer deleted successfully."
+            redirect to "/prayerwall"
+        else
+            flash[:message] = "User must be logged in to perform this action."
+            redirect to "/login"
+        end
+    end
+
+    
 end

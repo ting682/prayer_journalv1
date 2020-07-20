@@ -11,16 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200715155648) do
+ActiveRecord::Schema.define(version: 20200720135122) do
 
-  create_table "journals", force: :cascade do |t|
-    t.text    "heart"
-    t.text    "teachme"
-    t.text    "prayer"
-    t.text    "answer"
-    t.text    "thankful"
-    t.string  "date"
-    t.integer "user_id"
+  create_table "journalentries", force: :cascade do |t|
+    t.text     "heart"
+    t.text     "teachme"
+    t.text     "prayer"
+    t.text     "answer"
+    t.text     "thankful"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -30,9 +31,11 @@ ActiveRecord::Schema.define(version: 20200715155648) do
   end
 
   create_table "wallprayers", force: :cascade do |t|
-    t.string  "prayer"
-    t.boolean "anonymous"
-    t.integer "user_id"
+    t.string   "prayer"
+    t.boolean  "anonymous"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
 end

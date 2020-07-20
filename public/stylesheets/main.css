@@ -180,6 +180,7 @@
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+    width: 60%;
   }
   
   .topnav {
@@ -342,6 +343,10 @@
 }
 
 @media screen and (max-width: 600px) {
+
+  #ourmanna-verse {
+    width: 95%;
+  }
 
   .hamburger {
     

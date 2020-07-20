@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
     has_secure_password
-    has_many :journals
+    has_many :journalentries
     has_many :wallprayers
 
     validates :username, :presence => true

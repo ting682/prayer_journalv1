@@ -1,11 +1,11 @@
 
 
 <div class="content">
-    <div class="flash">    
-        <% if flash.has?(:message) %>
-            <%= flash[:message] %>
-        <% end %>
-    </div>
+            <% if flash.has?(:message) %>
+                <div class="flash"> 
+                    <%= flash[:message] %>
+                </div>
+            <% end %>
     <a href="/prayerwall/new" class="button button1">Create new prayer</a>
 <div class="div-table2">
     <div class="div-table2-row1">

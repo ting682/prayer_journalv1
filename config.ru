@@ -16,5 +16,5 @@ use UsersController
 use Rack::MethodOverride
 use WallprayersController
 use Rack::MethodOverride
-use JournalsController
+use JournalentriesController
 run ApplicationController

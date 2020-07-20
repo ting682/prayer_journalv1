@@ -1,9 +1,9 @@
 <div class="content">
-    <div class="flash">    
-        <% if flash.has?(:message) %>
+    <% if flash.has?(:message) %>
+        <div class="flash"> 
             <%= flash[:message] %>
-        <% end %>
-    </div>
+        </div>
+    <% end %>
 <br>
 <form method="post" action="/login">
     

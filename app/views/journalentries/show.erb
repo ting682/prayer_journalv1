@@ -9,7 +9,7 @@
                 </div>
             <% end %>
         
-        <a href="/journals/new" class="button button1">Create new journal entry</a>
+        <a href="/journalentries/new" class="button button1">Create new journal entry</a>
         
         <div class="div-table">
             <div class="div-table-row1">
@@ -18,12 +18,12 @@
                 <div class="div-table-col3">Delete</div>
             </div>
 
-            <% @user.journals.each do |journal| %>
+            <% @user.journalentries.each do |journalentry| %>
                 <div class="div-table-row">
-                    <div class="div-table-col1"><%= journal.created_at.localtime.strftime("%b %d, %Y %I:%M %p") %></div>
-                    <div class="div-table-col2"><a href="/journals/<%= journal.id %>/edit" class="buttonshow button3">Edit</a></div>
+                    <div class="div-table-col1"><%= journalentry.created_at.localtime.strftime("%b %d, %Y %I:%M %p") %></div>
+                    <div class="div-table-col2"><a href="/journalentries/<%= journalentry.id %>/edit" class="buttonshow button3">Edit</a></div>
                     <div class="div-table-col3">
-                        <form method="post" action="/journals/<%= journal.id %>">
+                        <form method="post" action="/journalentries/<%= journalentry.id %>">
                             <input id="hidden" type="hidden" name="_method" value="DELETE">
                             <input class="buttonshow button3" type="submit" value="Delete Entry">
                         </form>
