@@ -3,9 +3,9 @@
 
     <div class="content">
              
-            <% if flash.has?(:message) %>
-                <div class="flash"> 
-                    <%= flash[:message] %>
+            <% if flash.has?[:notice] %>
+                <div class="flash" style="color:green;"> 
+                    <%= flash[:notice] %>
                 </div>
             <% end %>
         
@@ -20,7 +20,7 @@
 
             <% @user.journalentries.each do |journalentry| %>
                 <div class="div-table-row">
-                    <div class="div-table-col1"><%= journalentry.created_at.localtime.strftime("%b %d, %Y %I:%M %p") %></div>
+                    <div class="div-table-col1"><a href="/journalentries/<%= journalentry.id %>"><%= journalentry.created_at.localtime.strftime("%b %d, %Y %I:%M %p") %></a></div>
                     <div class="div-table-col2"><a href="/journalentries/<%= journalentry.id %>/edit" class="buttonshow button3">Edit</a></div>
                     <div class="div-table-col3">
                         <form method="post" action="/journalentries/<%= journalentry.id %>">

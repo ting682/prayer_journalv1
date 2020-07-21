@@ -1,9 +1,7 @@
 class WallprayersController < ApplicationController
 
-    
-
     get '/prayerwall' do
-        if Helper.is_logged_in?(session)
+        if is_logged_in?
             @prayerwall = Wallprayer.all
             @user = User.find(session[:user_id])
             erb :'/prayerwall/index'
@@ -13,7 +11,7 @@ class WallprayersController < ApplicationController
     end
 
     get '/prayerwall/new' do
-        if Helper.is_logged_in?(session)
+        if is_logged_in?
             @user = User.find(session[:user_id])
             erb :'/prayerwall/new'
         else
@@ -29,30 +27,30 @@ class WallprayersController < ApplicationController
 
     post '/prayerwall' do
         
-        @user = User.find(session[:user_id])
+        @user = current_user
 
         if params[:anonymous] == nil
-            @prayer = Wallprayer.create(prayer: params[:prayerwall], anonymous: false)
-            @user = User.find(session[:user_id])
+            @prayer = Wallprayer.create(prayer: params[:prayerwall], anonymous: false, title: params[:title])
+            @user = current_user
             @user.wallprayers << @prayer
         else
-            @prayer = Wallprayer.create(prayer: params[:prayerwall], anonymous: true)
+            @prayer = Wallprayer.create(prayer: params[:prayerwall], anonymous: true, title: params[:title])
         end
             
-        flash[:message] = "Prayer created successfully."
+        flash[:notice] = "Prayer created successfully."
 
         redirect to "/prayerwall"
     end
 
     get '/prayerwall/:id/edit' do
-        @user = Helper.current_user(session)
+        @user = current_user
         @wallprayer = Wallprayer.find(params[:id])
         if @wallprayer.user_id == session[:user_id]
 
             erb :'/prayerwall/edit'
 
         else
-            flash[:message] = "User must be logged in to perform this action."
+            flash[:error] = "User must be logged in to perform this action."
 
             redirect to "/login"
         end
@@ -64,12 +62,12 @@ class WallprayersController < ApplicationController
             #binding.pry
             @prayer.update(prayer: params[:prayerwall], title: params[:title])
             
-            flash[:message] = "Prayer edited successfully."
+            flash[:notice] = "Prayer edited successfully."
             redirect to "/prayerwall"
         
         else
 
-            flash[:message] = "User must be logged in to perform this action."
+            flash[:error] = "User must be logged in to perform this action."
             redirect to "/login"
 
         end
@@ -80,10 +78,10 @@ class WallprayersController < ApplicationController
         if @prayer.user_id == session[:user_id]
 
             @prayer.delete
-            flash[:message] = "Prayer deleted successfully."
+            flash[:notice] = "Prayer deleted successfully."
             redirect to "/prayerwall"
         else
-            flash[:message] = "User must be logged in to perform this action."
+            flash[:error] = "User must be logged in to perform this action."
             redirect to "/login"
         end
     end

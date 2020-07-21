@@ -14,7 +14,7 @@ gem 'tux'
 gem 'truemail'
 gem 'dotenv'
 gem 'httparty'
-gem 'rack-flash3'
+gem 'sinatra-flash'
 
 group :test do
   gem 'rspec'

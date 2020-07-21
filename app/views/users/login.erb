@@ -1,7 +1,8 @@
 <div class="content">
-    <% if flash.has?(:message) %>
-        <div class="flash"> 
-            <%= flash[:message] %>
+    <% if flash[:error] %>
+    
+        <div class="flash" style="color:red;"> 
+            <%= flash[:error] %>
         </div>
     <% end %>
 <br>

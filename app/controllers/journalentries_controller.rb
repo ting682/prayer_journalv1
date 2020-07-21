@@ -1,4 +1,4 @@
-require 'rack-flash'
+#require 'rack-flash'
 
 class JournalentriesController < ApplicationController
 
@@ -27,12 +27,17 @@ class JournalentriesController < ApplicationController
 
     get '/journalentries/:id' do
         #binding.pry
-        if is_logged_in?
-            @user = current_user
-            @journalentry = Journalentry.find(params[:id])
+        @journalentry = Journalentry.find(params[:id])
+        @user = current_user
+
+        if is_logged_in? && @journalentry.user_id == @user.id
+                
             erb :'/journalentries/show'
 
         else
+
+            flash[:error] = "Need to be logged in to view this journal entry."
+
             redirect to "/login"
         end
         
@@ -40,7 +45,7 @@ class JournalentriesController < ApplicationController
 
     post '/journalentries' do
         
-        @user = User.find(session[:user_id])
+        @user = current_user
 
         @journalentry = Journalentry.create(heart: params[:heart], teachme: params[:teachme], prayer: params[:prayer], answer: params[:answer], thankful: params[:thankful])
         
@@ -48,7 +53,7 @@ class JournalentriesController < ApplicationController
 
         @user.save
 
-        flash[:message] = "Journal entry created successfully."
+        flash[:notice] = "Journal entry created successfully."
 
         redirect to "/journalentries"
 
@@ -76,7 +81,7 @@ class JournalentriesController < ApplicationController
         
 
         #flash message "Journal entry was successfully edited."
-        flash[:message] = "Journal entry edited successfully."
+        flash[:notice] = "Journal entry edited successfully."
 
         #binding.pry
         redirect to "/journalentries"
@@ -89,13 +94,13 @@ class JournalentriesController < ApplicationController
             @journalentry.delete
 
             #flash message "Journal entry was deleted successfully"
-            flash[:message] = "Journal entry deleted successfully."
+            flash[:notice] = "Journal entry deleted successfully."
 
             redirect to "/journalentries"
 
         else
             #flash message "You should be logged on to perform this action"
-            flash[:message] = "In order to perform this action, you must be logged in."
+            flash[:error] = "In order to perform this action, you must be logged in."
 
             
             redirect to "/login"

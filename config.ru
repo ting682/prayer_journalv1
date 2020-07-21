@@ -5,11 +5,7 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 require 'dotenv/load'
-require 'rack-flash'
-
-
-
-
+#require 'rack-flash'
 
 use Rack::MethodOverride
 use UsersController

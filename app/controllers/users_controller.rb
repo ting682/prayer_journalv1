@@ -11,13 +11,14 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do
-        env['rack.session']
+        #env['rack.session']
         if is_logged_in?
 
             redirect to "/journalentries"
         end
         if params[:username] == "new"
             #flash message cannot use new as the username
+            flash[:error] = "Cannot use new as a user name"
             redirect to '/signup'
         end
 
@@ -26,28 +27,28 @@ class UsersController < ApplicationController
                      end
 
         if @find_user
-            flash[:message] = "User name already exists. Please try again."
+            flash[:error] = "User name already exists. Please try again."
             redirect to '/signup'
         else
             user = User.new(username: params[:username], email: params[:email], password: params[:password])
         
             if user.save
                 session[:user_id] = user.id
-                env['rack.session']
+                #env['rack.session']
                 redirect to "/journalentries"
     
             else
                 if params[:username] == ""
                     
-                    flash[:message] = "Must provide a valid user name. Please try again."
+                    flash[:error] = "Must provide a valid user name. Please try again."
                 
                 elsif params[:password] == ""
 
-                    flash[:message] = "Password must not be blank. Please try again."
+                    flash[:error] = "Password must not be blank. Please try again."
                 
                 elsif params[:email] == ""
 
-                    flash[:message] = "Email must not be blank. Please try again."
+                    flash[:error] = "Email must not be blank. Please try again."
                 
                 end
                     
@@ -87,6 +88,7 @@ class UsersController < ApplicationController
             redirect "/journalentries"
         else
             
+            flash[:error] = "Credentials were invalid. Please try again."
             redirect "/login"
         end
     end

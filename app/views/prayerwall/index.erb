@@ -1,9 +1,9 @@
 
 
 <div class="content">
-            <% if flash.has?(:message) %>
-                <div class="flash"> 
-                    <%= flash[:message] %>
+            <% if flash[:notice] %>
+                <div class="flash" style="color:green;"> 
+                    <%= flash[:notice] %>
                 </div>
             <% end %>
     <a href="/prayerwall/new" class="button button1">Create new prayer</a>
