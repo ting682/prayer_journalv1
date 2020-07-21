@@ -17,7 +17,7 @@
 
     <% @prayerwall.each do |wallprayer| %>
         <div class="div-table2-row">
-            <div class="div-table2-col1"><%= wallprayer.prayer %></div>
+            <div class="div-table2-col1"><a href="/prayerwall/<%= wallprayer.id %>"><%= wallprayer.title %></a></div>
             <div class="div-table2-col2">
                 <% if wallprayer.anonymous %>
                     Anonymous

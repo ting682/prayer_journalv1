@@ -3,6 +3,10 @@
     <form method="post" action="/prayerwall/<%= @wallprayer.id %>">
     <input id="hidden" type="hidden" name="_method" value="patch">
 
+    <label for="title">Prayer title </label><br>
+    <input type="text" name="title" value="<%= @wallprayer.title %>"><br><br>
+
+    <label for="prayerwall">Prayer request</label>
     <textarea name="prayerwall" class="textfield" style="height:100px; width:100%;"><%= @wallprayer.prayer %></textarea>
     
     <input type="submit" name="submit" class="button button1" value="Edit prayer wall request">

@@ -6,7 +6,7 @@ class WallprayersController < ApplicationController
         if Helper.is_logged_in?(session)
             @prayerwall = Wallprayer.all
             @user = User.find(session[:user_id])
-            erb :'/prayerwall'
+            erb :'/prayerwall/index'
         else
             redirect to "/login"
         end
@@ -19,6 +19,12 @@ class WallprayersController < ApplicationController
         else
             redirect to "/login"
         end
+    end
+
+    get '/prayerwall/:id' do
+        @wallprayer = Wallprayer.find(params[:id])
+
+        erb :'prayerwall/show'
     end
 
     post '/prayerwall' do
@@ -55,7 +61,8 @@ class WallprayersController < ApplicationController
     patch '/prayerwall/:id' do
         @prayer = Wallprayer.find(params[:id])
         if @prayer.user_id == session[:user_id]
-            @prayer.update(prayer: params[:prayerwall])
+            #binding.pry
+            @prayer.update(prayer: params[:prayerwall], title: params[:title])
             
             flash[:message] = "Prayer edited successfully."
             redirect to "/prayerwall"

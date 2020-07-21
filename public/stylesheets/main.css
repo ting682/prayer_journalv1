@@ -166,7 +166,6 @@
   }
 
   .container {
-    float: left;
     display: inline-block;
     cursor: pointer;
   }
@@ -350,7 +349,6 @@
 
   .hamburger {
     
-    display: inline;
     width: 35px;
     height: 5px;
     background-color: black;
