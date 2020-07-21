@@ -2,11 +2,9 @@ require 'rack-flash'
 
 class JournalentriesController < ApplicationController
 
-    
-
     get '/journalentries/new' do
-        if Helper.is_logged_in?(session)
-            @user = User.find(session[:user_id])
+        if is_logged_in?
+            @user = current_user
             
             erb :'/journalentries/new'
         else
@@ -16,9 +14,22 @@ class JournalentriesController < ApplicationController
 
     get '/journalentries' do
         #binding.pry
-        if Helper.is_logged_in?(session)
-            @user = Helper.current_user(session)
+        if is_logged_in?
+            @user = current_user
             
+            erb :'/journalentries/index'
+
+        else
+            redirect to "/login"
+        end
+        
+    end
+
+    get '/journalentries/:id' do
+        #binding.pry
+        if is_logged_in?
+            @user = current_user
+            @journalentry = Journalentry.find(params[:id])
             erb :'/journalentries/show'
 
         else
@@ -28,11 +39,9 @@ class JournalentriesController < ApplicationController
     end
 
     post '/journalentries' do
-    
         
         @user = User.find(session[:user_id])
 
-        
         @journalentry = Journalentry.create(heart: params[:heart], teachme: params[:teachme], prayer: params[:prayer], answer: params[:answer], thankful: params[:thankful])
         
         @user.journalentries << @journalentry
@@ -47,8 +56,8 @@ class JournalentriesController < ApplicationController
 
     get '/journalentries/:id/edit' do
         
-        if Helper.is_logged_in?(session)
-            @user = Helper.current_user(session)
+        if is_logged_in?
+            @user = current_user
             @journalentry = Journalentry.find(params[:id])
             
             erb :'journalentries/edit'
@@ -60,11 +69,8 @@ class JournalentriesController < ApplicationController
     end
 
     patch '/journalentries/:id' do
-
         
         @journalentry = Journalentry.find(params[:id])
-
-        
 
         @journalentry.update(heart: params[:heart], teachme: params[:teachme], prayer: params[:prayer], answer: params[:answer], thankful: params[:thankful])
         

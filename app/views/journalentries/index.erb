@@ -1,0 +1,40 @@
+<% if Helper.is_logged_in?(session) %>
+
+
+    <div class="content">
+             
+            <% if flash.has?(:message) %>
+                <div class="flash"> 
+                    <%= flash[:message] %>
+                </div>
+            <% end %>
+        
+        <a href="/journalentries/new" class="button button1">Create new journal entry</a>
+        
+        <div class="div-table">
+            <div class="div-table-row1">
+                <div class="div-table-col1">Journal entry date</div>
+                <div class="div-table-col21">Edit</div>
+                <div class="div-table-col3">Delete</div>
+            </div>
+
+            <% @user.journalentries.each do |journalentry| %>
+                <div class="div-table-row">
+                    <div class="div-table-col1"><%= journalentry.created_at.localtime.strftime("%b %d, %Y %I:%M %p") %></div>
+                    <div class="div-table-col2"><a href="/journalentries/<%= journalentry.id %>/edit" class="buttonshow button3">Edit</a></div>
+                    <div class="div-table-col3">
+                        <form method="post" action="/journalentries/<%= journalentry.id %>">
+                            <input id="hidden" type="hidden" name="_method" value="DELETE">
+                            <input class="buttonshow button3" type="submit" value="Delete Entry">
+                        </form>
+                    </div>
+                </div>
+            <% end %>
+
+        </div>
+
+    </div>
+
+<% else %>
+      <h1> You must be logged in to make journal entries </h1>
+<% end %>

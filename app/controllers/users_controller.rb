@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
     post '/signup' do
         env['rack.session']
-        if Helper.is_logged_in?(session)
+        if is_logged_in?
 
             redirect to "/journalentries"
         end
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
     get '/login' do
         #binding.pry
         
-        if Helper.is_logged_in?(session)
+        if is_logged_in?
             #binding.pry
             @user = User.find(session[:user_id])
             redirect to "/journalentries"
@@ -74,7 +74,7 @@ class UsersController < ApplicationController
     post '/login' do
         #binding.pry
         env['rack.session']
-        if Helper.is_logged_in?(session)
+        if is_logged_in?
             @user = User.find(session[:user_id])
             redirect "/journalentries"
         end
@@ -82,12 +82,12 @@ class UsersController < ApplicationController
         user = User.find_by(:username => params[:username])
 
         if user && user.authenticate(params[:password])
-          session[:user_id] = user.id
+            session[:user_id] = user.id
           
-          redirect "/journalentries"
+            redirect "/journalentries"
         else
             
-          redirect "/login"
+            redirect "/login"
         end
     end
 

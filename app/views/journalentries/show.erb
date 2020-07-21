@@ -3,35 +3,67 @@
 
     <div class="content">
              
-            <% if flash.has?(:message) %>
-                <div class="flash"> 
-                    <%= flash[:message] %>
+        <% if flash.has?(:message) %>
+            <div class="flash"> 
+                <%= flash[:message] %>
+            </div>
+        <% end %>
+        
+        <div class="journalshow-table">
+            <div class="journalshow-table-row">
+                <div class="journalshow-table-col1">
+                    
+                    Created at: <%= @journalentry.created_at.localtime.strftime("%b %d, %Y %I:%M %p") %>
+                
                 </div>
-            <% end %>
-        
-        <a href="/journalentries/new" class="button button1">Create new journal entry</a>
-        
-        <div class="div-table">
-            <div class="div-table-row1">
-                <div class="div-table-col1">Journal entry date</div>
-                <div class="div-table-col21">Edit</div>
-                <div class="div-table-col3">Delete</div>
+
+                <div class="journalshow-table-col2"> 
+                
+                    <% if @journalentry.created_at != @journalentry.updated_at %>
+                        Updated at: <%= @journalentry.updated_at.localtime.strftime("%b %d, %Y %I:%M %p") %>
+                
+                    <% else %>
+
+                    <% end %>
+                
+                </div>
+
             </div>
 
-            <% @user.journalentries.each do |journalentry| %>
-                <div class="div-table-row">
-                    <div class="div-table-col1"><%= journalentry.created_at.localtime.strftime("%b %d, %Y %I:%M %p") %></div>
-                    <div class="div-table-col2"><a href="/journalentries/<%= journalentry.id %>/edit" class="buttonshow button3">Edit</a></div>
-                    <div class="div-table-col3">
-                        <form method="post" action="/journalentries/<%= journalentry.id %>">
-                            <input id="hidden" type="hidden" name="_method" value="DELETE">
-                            <input class="buttonshow button3" type="submit" value="Delete Entry">
-                        </form>
-                    </div>
-                </div>
-            <% end %>
+            <div class="journalshow-table-row">
 
-        </div>
+                What is on my heart... <br>
+                <%= @journalentry.heart %><br><br>
+
+            </div>
+        
+            <div class="journalshow-table-row">
+
+                Lord, teach me to... <br>
+                <%= @journalentry.teachme %><br><br>
+
+            </div>
+
+            <div class="journalshow-table-row">
+
+                Prayers  <br>
+                <%= @journalentry.prayer %><br><br>
+
+            </div>
+
+            <div class="journalshow-table-row">
+
+                Answers to prayers  <br>
+                <%= @journalentry.answer %><br><br>
+
+            </div>
+
+            <div class="journalshow-table-row">
+
+                I am thankful for... <br>
+                <%= @journalentry.thankful %><br><br>
+
+            </div>
 
     </div>
 
