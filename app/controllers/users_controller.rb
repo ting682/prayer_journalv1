@@ -2,12 +2,23 @@ class UsersController < ApplicationController
     
 
     get '/' do
-        erb :'index'
+        if is_logged_in?
+            redirect to "/journalentries"
+
+        else
+            erb :'index'
+        end
+        
     end
 
     get '/signup' do
+        if is_logged_in?
+            redirect to "/journalentries"
+        else
+            erb :'signup'
+        end
         #binding.pry
-        erb :'signup'
+        
     end
 
     post '/signup' do
@@ -22,38 +33,20 @@ class UsersController < ApplicationController
             redirect to '/signup'
         end
 
-        @find_user = User.all.find do |user|
-                        user.username == params[:username]
-                     end
-
-        if @find_user
-            flash[:error] = "User name already exists. Please try again."
-            redirect to '/signup'
-        else
-            user = User.new(username: params[:username], email: params[:email], password: params[:password])
+        user = User.new(username: params[:username], email: params[:email], password: params[:password])
         
-            if user.save
-                session[:user_id] = user.id
-                #env['rack.session']
-                redirect to "/journalentries"
+        if user.save
+            session[:user_id] = user.id
+            #env['rack.session']
+             redirect to "/journalentries"
     
-            else
-                if params[:username] == ""
+        else
+            
+            #binding.pry
+            flash[:error] = "Sign up error: #{user.errors.full_messages.to_sentence}"
                     
-                    flash[:error] = "Must provide a valid user name. Please try again."
-                
-                elsif params[:password] == ""
-
-                    flash[:error] = "Password must not be blank. Please try again."
-                
-                elsif params[:email] == ""
-
-                    flash[:error] = "Email must not be blank. Please try again."
-                
-                end
-                    
-                redirect to '/signup'
-            end
+            redirect to '/signup'
+            
         end
 
 
@@ -74,7 +67,7 @@ class UsersController < ApplicationController
 
     post '/login' do
         #binding.pry
-        env['rack.session']
+        
         if is_logged_in?
             @user = User.find(session[:user_id])
             redirect "/journalentries"

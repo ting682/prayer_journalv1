@@ -23,9 +23,6 @@ class ApplicationController < Sinatra::Base
     
   end
 
-  get "/" do
-    erb :welcome
-  end
 
   helpers do 
     def is_logged_in?

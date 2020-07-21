@@ -28,18 +28,27 @@ class WallprayersController < ApplicationController
     post '/prayerwall' do
         
         @user = current_user
-
         if params[:anonymous] == nil
-            @prayer = Wallprayer.create(prayer: params[:prayerwall], anonymous: false, title: params[:title])
-            @user = current_user
-            @user.wallprayers << @prayer
+            prayer = Wallprayer.new(prayer: params[:prayerwall], anonymous: false, title: params[:title], user_id: current_user.id)
         else
-            @prayer = Wallprayer.create(prayer: params[:prayerwall], anonymous: true, title: params[:title])
+            prayer = Wallprayer.new(prayer: params[:prayerwall], anonymous: true, title: params[:title], user_id: current_user.id)
+        end
+
+        if prayer.save
+            
+            # @user = current_user
+            # @user.wallprayers << @prayer
+            flash[:notice] = "Prayer created successfully."
+            redirect to "/prayerwall"
+
+        else
+            
+            flash[:error] = "Prayer wall request failed: #{prayer.errors.full_messages.to_sentence}"
+            
+            redirect to "/prayerwall/new"
         end
             
-        flash[:notice] = "Prayer created successfully."
 
-        redirect to "/prayerwall"
     end
 
     get '/prayerwall/:id/edit' do

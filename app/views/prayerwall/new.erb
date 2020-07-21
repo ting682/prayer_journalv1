@@ -1,11 +1,17 @@
 <div class="content">
-<br><br>
+            <% if flash[:error] %>
+                <div class="flash" style="color:red;"> 
+                    <%= flash[:error] %>
+                </div>
+            <% end %>
+
+<br>
     <form method="post" action="/prayerwall">
         
         <label name="title">Prayer title: </label><br>
 
         <input type="text" name="title"><br><br>
-        
+
         <label name="prayerwall">Prayer wall request</label><br>
 
         <textarea name="prayerwall" class="textfield" style="height:100px; width:100%;"></textarea><br><br>
