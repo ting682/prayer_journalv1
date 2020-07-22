@@ -1,9 +1,9 @@
-<% if Helper.is_logged_in?(session) %>
+<% if is_logged_in? %>
 
 
     <div class="content">
              
-        <% if flash.has?[:notice] %>
+        <% if flash[:notice] %>
             <div class="flash" style="color:green;"> 
                 <%= flash[:notice] %>
             </div>

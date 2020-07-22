@@ -45,17 +45,21 @@ class JournalentriesController < ApplicationController
 
     post '/journalentries' do
         
-        @user = current_user
+        user = current_user
 
-        @journalentry = Journalentry.create(heart: params[:heart], teachme: params[:teachme], prayer: params[:prayer], answer: params[:answer], thankful: params[:thankful])
+        journalentry = Journalentry.new(heart: params[:heart], teachme: params[:teachme], prayer: params[:prayer], answer: params[:answer], thankful: params[:thankful], user_id: user.id)
         
-        @user.journalentries << @journalentry
+        #@user.journalentries << @journalentry
+        if journalentry.save
+        
+            flash[:notice] = "Journal entry created successfully."
 
-        @user.save
+            redirect to "/journalentries"
+        else
+            flash[:error] = "Journal entry error: what is on your heart can't be blank"
 
-        flash[:notice] = "Journal entry created successfully."
-
-        redirect to "/journalentries"
+            redirect to "/journalentries"
+        end
 
     end
 
@@ -68,23 +72,32 @@ class JournalentriesController < ApplicationController
             erb :'journalentries/edit'
         else
 
-            redirect to "/login"
+            flash[:error] = "Not authorized to edit that journal entry."
+
+            redirect to "/journalentries"
         end
 
     end
 
     patch '/journalentries/:id' do
         
-        @journalentry = Journalentry.find(params[:id])
+        journalentry = Journalentry.find(params[:id])
 
-        @journalentry.update(heart: params[:heart], teachme: params[:teachme], prayer: params[:prayer], answer: params[:answer], thankful: params[:thankful])
+        #if journalentry.user_id == current_user.id
+
+        if journalentry.user_id == current_user.id && journalentry.update(heart: params[:heart], teachme: params[:teachme], prayer: params[:prayer], answer: params[:answer], thankful: params[:thankful])
         
+            
+            #flash message "Journal entry was successfully edited."
+            flash[:notice] = "Journal entry edited successfully."
 
-        #flash message "Journal entry was successfully edited."
-        flash[:notice] = "Journal entry edited successfully."
+            #binding.pry
+            redirect to "/journalentries"
+        else
+            flash[:error] = "Journal entry error: what is on your heart can't be blank"
 
-        #binding.pry
-        redirect to "/journalentries"
+            redirect to "/journalentries"
+        end
     end
 
     delete '/journalentries/:id' do

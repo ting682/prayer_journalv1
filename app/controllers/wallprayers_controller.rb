@@ -66,10 +66,9 @@ class WallprayersController < ApplicationController
     end
 
     patch '/prayerwall/:id' do
-        @prayer = Wallprayer.find(params[:id])
-        if @prayer.user_id == session[:user_id]
+        prayer = Wallprayer.find(params[:id])
+        if prayer.user_id == session[:user_id] && prayer.update(prayer: params[:prayerwall], title: params[:title])
             #binding.pry
-            @prayer.update(prayer: params[:prayerwall], title: params[:title])
             
             flash[:notice] = "Prayer edited successfully."
             redirect to "/prayerwall"
