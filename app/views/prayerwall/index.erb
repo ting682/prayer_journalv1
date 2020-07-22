@@ -6,13 +6,17 @@
                     <%= flash[:notice] %>
                 </div>
             <% end %>
+            <% if flash[:error] %>
+                <div class="flash" style="color:red;"> 
+                    <%= flash[:error] %>
+                </div>
+            <% end %>
     <a href="/prayerwall/new" class="button button1">Create new prayer</a>
 <div class="div-table2">
     <div class="div-table2-row1">
         <div class="div-table2-col1">Prayer</div>
         <div class="div-table2-col2">User</div>
-        <div class="div-table2-col3">Edit</div>
-        <div class="div-table2-col4">Delete</div>
+
     </div>
 
     <% @prayerwall.each do |wallprayer| %>
@@ -23,23 +27,6 @@
                     Anonymous
                 <% else %>
                     <%= User.find(wallprayer.user_id).username %>
-                <% end %>
-            </div>
-            <div class="div-table2-col3">
-                <% if Helper.is_logged_in?(session) && wallprayer.user_id == session[:user_id] %>
-                    <a href="/prayerwall/<%= wallprayer.id %>/edit" class="buttonshow button3">Edit</a>
-                <% else %>
-
-                <% end %>
-            </div>
-            <div class="div-table2-col4">
-                <% if Helper.is_logged_in?(session) && wallprayer.user_id == session[:user_id] %>
-                    <form method="post" action="/prayerwall/<%= wallprayer.id %>">
-                        <input id="hidden" type="hidden" name="_method" value="DELETE">
-                        <input class="buttonshow button3" type="submit" value="Delete">
-                    </form>
-                <% else %>
-
                 <% end %>
             </div>
             

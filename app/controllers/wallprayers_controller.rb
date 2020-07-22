@@ -75,8 +75,9 @@ class WallprayersController < ApplicationController
         
         else
 
-            flash[:error] = "User must be logged in to perform this action."
-            redirect to "/login"
+            flash[:error] = "Prayer wall request failed: #{prayer.errors.full_messages.to_sentence}"
+
+            redirect to "/prayerwall"
 
         end
     end

@@ -1,5 +1,28 @@
 <div class="content"><br><h2>Prayer wall request</h2>
 
+            
+            <% if is_logged_in? && @wallprayer.user_id == session[:user_id] %>
+                <div class="div-table2-col3">
+                <a href="/prayerwall/<%= @wallprayer.id %>/edit" class="buttonshow button3">Edit</a>
+                </div>
+            <% else %>
+
+            <% end %>
+            
+            <% if is_logged_in? && @wallprayer.user_id == session[:user_id] %>
+                
+                <div class="div-table2-col4">
+                    <form method="post" action="/prayerwall/<%= @wallprayer.id %>">
+                        <input id="hidden" type="hidden" name="_method" value="DELETE">
+                        <input class="buttonshow button3" type="submit" value="Delete">
+                    </form>
+                </div>
+                <br><br><br><br>
+            <% else %>
+
+            <% end %>
+            
+
 <h3>Title</h3>
 <%= @wallprayer.title %><br><br>
 

@@ -9,15 +9,15 @@
             </div>
         <% end %>
         
-        <div class="journalshow-table">
-            <div class="journalshow-table-row">
-                <div class="journalshow-table-col1">
+        <div class="journalshowtable">
+            <div class="journalshowtable-row">
+                <div class="journalshowtable-col1">
                     
-                    Created at: <%= @journalentry.created_at.localtime.strftime("%b %d, %Y %I:%M %p") %>
+                    <h4>Created at: <%= @journalentry.created_at.localtime.strftime("%b %d, %Y %I:%M %p") %></h4>
                 
                 </div>
 
-                <div class="journalshow-table-col2"> 
+                <div class="journalshowtable-col2"> 
                 
                     <% if @journalentry.created_at != @journalentry.updated_at %>
                         Updated at: <%= @journalentry.updated_at.localtime.strftime("%b %d, %Y %I:%M %p") %>
@@ -29,40 +29,50 @@
                 </div>
 
             </div>
-
-            <div class="journalshow-table-row">
-
-                What is on my heart... <br>
-                <%= @journalentry.heart %><br><br>
-
+            <div class="journalshowtable-row">
+                <div class="journalshowtable-button-col1"><a href="/journalentries/<%= @journalentry.id %>/edit" class="journalbuttonshow-edit button3">Edit Entry</a>
+                
+                </div>
+                <div class="journalshowtable-button-col2">
+                    <form method="post" action="/journalentries/<%= @journalentry.id %>">
+                        <input id="hidden" type="hidden" name="_method" value="DELETE">
+                        <input class="journalbuttonshow-delete button3" type="submit" value="Delete Entry">
+                    </form>
+                </div>
+            </div>
+            <div class="journalshowtable-row">
+                <div class="journalshowtable-col1">
+                    <h4>What is on my heart...</h4> <br>
+                    <%= @journalentry.heart %><br><br>
+                </div>
             </div>
         
-            <div class="journalshow-table-row">
-
-                Lord, teach me to... <br>
-                <%= @journalentry.teachme %><br><br>
-
+            <div class="journalshowtable-row">
+                <div class="journalshowtable-col1">
+                    <h4>Lord, teach me to...</h4> <br>
+                    <%= @journalentry.teachme %><br><br>
+                </div>
             </div>
 
-            <div class="journalshow-table-row">
-
-                Prayers  <br>
-                <%= @journalentry.prayer %><br><br>
-
+            <div class="journalshowtable-row">
+                <div class="journalshowtable-col1">
+                    <h4>Prayers  </h4><br>
+                    <%= @journalentry.prayer %><br><br>
+                </div>
             </div>
 
-            <div class="journalshow-table-row">
-
-                Answers to prayers  <br>
-                <%= @journalentry.answer %><br><br>
-
+            <div class="journalshowtable-row">
+                <div class="journalshowtable-col1">
+                    <h4>Answers to prayers</h4>  <br>
+                    <%= @journalentry.answer %><br><br>
+                </div>
             </div>
 
-            <div class="journalshow-table-row">
-
-                I am thankful for... <br>
-                <%= @journalentry.thankful %><br><br>
-
+            <div class="journalshowtable-row">
+                <div class="journalshowtable-col1">
+                    <h4>I am thankful for...</h4> <br>
+                    <%= @journalentry.thankful %><br><br>
+                </div>
             </div>
 
     </div>
