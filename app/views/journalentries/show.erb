@@ -1,0 +1,84 @@
+<% if is_logged_in? %>
+
+
+    <div class="content">
+             
+        <% if flash[:notice] %>
+            <div class="callout success" style="color:green;"> 
+                <%= flash[:notice] %>
+            </div>
+        <% end %>
+        
+        <div class="journalshowtable">
+            <div class="journalshowtable-row">
+                
+                <div class="journalshowtable-button-col1">    
+                    <h4>Created at: <%= @journalentry.created_at.localtime.strftime("%b %d, %Y %I:%M %p") %></h4>
+                </div>
+                
+                <% if @journalentry.created_at != @journalentry.updated_at %>
+                    <div class="journalshowtable-button-col1">
+                        Updated at: <%= @journalentry.updated_at.localtime.strftime("%b %d, %Y %I:%M %p") %>
+                    </div>
+                <% else %>
+
+                <% end %>
+                
+            </div>
+            <div class="journalshowtable-row">
+                <div class="journalshowtable-button-col1">
+                    <a href="/journalentries/<%= @journalentry.id %>/edit" class="journalbuttonshow-edit button3">Edit Entry</a>
+                
+                </div>
+                <div class="journalshowtable-button-col1">
+                    <form method="post" action="/journalentries/<%= @journalentry.id %>">
+                        <input id="hidden" type="hidden" name="_method" value="DELETE">
+                        <input class="journalbuttonshow-delete button3" type="submit" value="Delete Entry">
+                    </form>
+                </div>
+            </div>
+
+            <div class="journalshowtable-row">
+                <div class="journalshowtable-button-col1">
+                    <h4>What is on my heart...</h4> <br>
+                    <%= @journalentry.heart %><br><br>
+                </div>
+            </div>
+            <% if @journalentry.teachme != "" %>
+                <div class="journalshowtable-row">
+                    <div class="journalshowtable-button-col1">
+                        <h4>Lord, teach me to...</h4> <br>
+                        <%= @journalentry.teachme %><br><br>
+                    </div>
+                </div>
+            <% end %>
+            <% if @journalentry.prayer != "" %>
+                <div class="journalshowtable-row">
+                    <div class="journalshowtable-button-col1">
+                        <h4>Prayers  </h4><br>
+                        <%= @journalentry.prayer %><br><br>
+                    </div>
+                </div>
+            <% end %>
+            <% if @journalentry.answer != "" %>
+                <div class="journalshowtable-row">
+                    <div class="journalshowtable-button-col1">
+                        <h4>Answers to prayers</h4>  <br>
+                        <%= @journalentry.answer %><br><br>
+                    </div>
+                </div>
+            <% end %>
+            <% if @journalentry.thankful != "" %>
+                <div class="journalshowtable-row">
+                    <div class="journalshowtable-button-col1">
+                        <h4>I am thankful for...</h4> <br>
+                        <%= @journalentry.thankful %><br><br>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+
+<% else %>
+      <h1> You must be logged in to make journal entries </h1>
+<% end %>

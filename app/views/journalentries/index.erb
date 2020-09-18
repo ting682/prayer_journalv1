@@ -1,0 +1,48 @@
+<% if is_logged_in? %>
+
+
+    <div class="content">
+             
+            <% if flash[:notice] %>
+                <div class="callout success" style="color:green;"> 
+                    <%= flash[:notice] %>
+                </div>
+            <% end %>
+
+            <% if flash[:error] %>
+                <div class="callout alert" style="color:red;"> 
+                    <%= flash[:error] %>
+                </div>
+            <% end %>
+
+        <h3>Welcome, <%= @user.username %>!</h3>
+
+        <a href="/journalentries/new" class="button button1">Create new journal entry</a>
+        
+        <% if @user.journalentries.length == 0 %>
+
+            <h3> No journal entries yet!<h3>
+
+        <% else %>
+            <div class="div-table">
+                <div class="div-table-row1">
+                    <div class="div-table-col1">Journal entry date</div>
+
+                </div>
+
+                <% @user.journalentries.each do |journalentry| %>
+                    <div class="div-table-row">
+                        <div class="div-table-col1"><a href="/journalentries/<%= journalentry.id %>"><%= journalentry.created_at.localtime.strftime("%b %d, %Y %I:%M %p") %></a></div>
+                        
+                    </div>
+                <% end %>
+
+            </div>
+
+        <% end %>
+
+    </div>
+
+<% else %>
+      <h1> You must be logged in to make journal entries </h1>
+<% end %>

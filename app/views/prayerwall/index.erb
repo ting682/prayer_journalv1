@@ -1,0 +1,38 @@
+
+
+<div class="content">
+            <% if flash[:notice] %>
+                <div class="callout success" style="color:green;"> 
+                    <%= flash[:notice] %>
+                </div>
+            <% end %>
+            <% if flash[:error] %>
+                <div class="callout alert" style="color:red;"> 
+                    <%= flash[:error] %>
+                </div>
+            <% end %>
+    <a href="/prayerwall/new" class="button button1">Create new prayer</a>
+<div class="div-table2">
+    <div class="div-table2-row1">
+        <div class="div-table2-col1">Prayer</div>
+        <div class="div-table2-col2">User</div>
+
+    </div>
+
+    <% @prayerwall.each do |wallprayer| %>
+        <div class="div-table2-row">
+            <div class="div-table2-col1"><a href="/prayerwall/<%= wallprayer.id %>"><%= wallprayer.title %></a></div>
+            <div class="div-table2-col2">
+                <% if wallprayer.anonymous %>
+                    Anonymous
+                <% else %>
+                    <%= User.find(wallprayer.user_id).username %>
+                <% end %>
+            </div>
+            
+            
+        </div>
+    <% end %>
+
+</div>
+</div>

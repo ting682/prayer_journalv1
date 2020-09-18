@@ -1,0 +1,16 @@
+current directory: /home/ting682/flatiron/prayer_journal/vendor/bundle/ruby/2.6.0/gems/bond-0.5.1/ext/readline_line_buffer
+/home/ting682/.rvm/rubies/ruby-2.6.0/bin/ruby -I /home/ting682/.rvm/rubies/ruby-2.6.0/lib/ruby/site_ruby/2.6.0 -r ./siteconf20200916-12295-1u5zia1.rb extconf.rb
+
+current directory: /home/ting682/flatiron/prayer_journal/vendor/bundle/ruby/2.6.0/gems/bond-0.5.1/ext/readline_line_buffer
+make "DESTDIR=" clean
+make: *** No rule to make target 'clean'.  Stop.
+
+current directory: /home/ting682/flatiron/prayer_journal/vendor/bundle/ruby/2.6.0/gems/bond-0.5.1/ext/readline_line_buffer
+make "DESTDIR="
+echo "This is a dummy extension"
+This is a dummy extension
+
+current directory: /home/ting682/flatiron/prayer_journal/vendor/bundle/ruby/2.6.0/gems/bond-0.5.1/ext/readline_line_buffer
+make "DESTDIR=" install
+echo "This is a dummy extension"
+This is a dummy extension

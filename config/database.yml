@@ -1,0 +1,23 @@
+development:
+  # adapter: postgresql
+
+  # database: database.db
+  adapter: postgresql
+  host: localhost
+  username: postgres
+  database: prayerjournal
+
+# test:
+#   adapter: sqlite3
+#   database: database.db
+
+production:
+  # adapter: postgresql
+  # host: localhost
+  # username: user
+  # database: app-dev
+  # adapter: postgresql
+  # database: ENV['DATABASE'] #rename this to whatever you want
+  # username: ENV['DATABASE_USER_NAME']
+  # password: ENV['DATABASE_PASSWORD']
+  # host: ec2-3-216-92-193.compute-1.amazonaws.com
