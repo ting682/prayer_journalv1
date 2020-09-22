@@ -444,7 +444,7 @@
 @media screen and (max-width: 600px) {
 
   #ourmanna-verse {
-    width: 95%;
+    width: 100%;
   }
 
   .hamburger {
@@ -503,11 +503,11 @@
   }
 
   .div-table2-col1 {
-    width: auto;
+    width: 75%;
   }
 
   .div-table2-col2 {
-    width: auto;
+    width: 25%;
   }
 
   .div-table2-row1 {
