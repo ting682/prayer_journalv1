@@ -503,10 +503,12 @@
   }
 
   .div-table2-col1 {
+    float: left;
     width: 75%;
   }
 
   .div-table2-col2 {
+    float: left;
     width: 25%;
   }
 
