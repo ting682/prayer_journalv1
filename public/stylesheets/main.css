@@ -509,4 +509,15 @@
   .div-table2-col2 {
     width: 30%;
   }
+
+  .div-table2-row1 {
+    display: table-row;
+    width: 100%;
+    
+  }
+
+  .div-table2-row {
+    display: table-row;
+    width: 100%;
+  }
 }
