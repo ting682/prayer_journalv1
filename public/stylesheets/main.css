@@ -499,25 +499,25 @@
   }
 
   .div-table2 {
-    width: 100%;
+    width: auto;
   }
 
   .div-table2-col1 {
-    width: 70%;
+    width: auto;
   }
 
   .div-table2-col2 {
-    width: 30%;
+    width: auto;
   }
 
   .div-table2-row1 {
     display: table-row;
-    width: 100%;
+    width: auto;
     
   }
 
   .div-table2-row {
     display: table-row;
-    width: 100%;
+    width: auto;
   }
 }
