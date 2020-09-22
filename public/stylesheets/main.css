@@ -296,14 +296,14 @@
   .div-table2-col1 {
     float: left; /* fix for  buggy browsers */
     border-radius: 5px;
-    width: 300px;         
+    width: 75%;         
     margin: 10px;
   }
 
   .div-table2-col2 {
     float: left; /* fix for  buggy browsers */
     border-radius: 5px;   
-    width: 100px;          
+    width: 25%;          
     margin: 10px; 
   }
 
