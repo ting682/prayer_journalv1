@@ -29,8 +29,10 @@ gem 'rack-ssl-enforcer'
 #ruby '~> 2.6.0'
 
 #gem "bigdecimal"#, ">= 2.0.0"
+  gem 'shotgun'
 
 group :development do
+
    gem 'sqlite3'
 end
 
