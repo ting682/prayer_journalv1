@@ -296,7 +296,7 @@
   .div-table2-col1 {
     float: left; /* fix for  buggy browsers */
     border-radius: 5px;
-    width: 70%;         
+    width: 60%;         
     margin: 10px;
   }
 
