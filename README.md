@@ -1,6 +1,6 @@
 # PrayerJournal
 
-Welcome to the Prayer Journal! This web app is used to create a journal for users to log in every day. This web app also contains a prayer wall so users can contribute prayers that they want everyone to pray for.
+Welcome to the Prayer Journal! This web app is used to create a journal for users to log in every day. This web app also contains a prayer wall so users can contribute prayers that they want everyone to pray for. This web application was developed using Sinatra. This app can be found via Heroku [here](https://prayerjournals.herokuapp.com/)
 
 ## Installation
 
@@ -13,7 +13,7 @@ open your favorite browser and enter the given local url provided by the shotgun
 
 ## Usage
 
-Perform CRUD actions on journal entries and prayer wall requests.
+Perform CRUD actions on journal entries and prayer wall requests. 
 
 
 ## Contributing
